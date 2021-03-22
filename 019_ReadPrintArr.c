@@ -9,6 +9,7 @@ int main(){
       for(j=0;j<10;j++) {
          printf("Enter value for disp[%d][%d]:", i, j);
          scanf("%d", &disp[i][j]);
+         printf("\n");
       }
    }
    //Displaying array elements
