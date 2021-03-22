@@ -3,6 +3,7 @@
 struct student {
     char name[50];
     int roll;
+    float attendance;
     float marks;
 } s;
 
@@ -16,6 +17,8 @@ int main() {
     scanf("%d", &s.roll);
     printf("Enter marks: ");
     scanf("%f", &s.marks);
+    printf("Attendance: ");
+    scanf("%f", &s.attendance);
 
     //This will print the user input.
     printf("Displaying Information:\n");
@@ -23,6 +26,7 @@ int main() {
     printf("%s", s.name);
     printf("Roll number: %d\n", s.roll);
     printf("Marks: %.1f\n", s.marks);
+    printf("Attendance: %.1f\n;",s.attendance);
 
     return 0;
 }
