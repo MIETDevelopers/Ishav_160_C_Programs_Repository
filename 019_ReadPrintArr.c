@@ -15,7 +15,7 @@ int main(){
    printf("Two Dimensional array elements:\n");
    for(i=0; i<10; i++) {
       for(j=0;j<10;j++) {
-         printf("%d ", disp[i][j]);
+         printf("%d \n", disp[i][j]);
          if(j==10){
             printf("\n");
          }
