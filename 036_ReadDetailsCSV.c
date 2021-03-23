@@ -1,53 +1,98 @@
-//To be modified. (Not ready yet!)				© Ishav Verma 23/March/2021
 #include <stdio.h>
-#include <string.h>
 #include <stdlib.h>
+struct student
+{
+    int roll_no;
+    char name[80];
+    int attendance;
+};
 
+void accept(struct student[], int);
+void display(struct student[], int);
+int search(struct student[], int, int);
+int main()
+{
+    struct student data[20];
+    int n, choice, roll_no, index;
 
-void read_csv(int row, int col, char *filename, double **data){
-	FILE *file;
-	file = fopen("E:\\Softwares\\C_Programs\\Ishav_160_C_Programs_Repository\\036_ReadDetailsCSV.csv", "r");
-
-	int i = 0;
-    char line[4098];
-	while (fgets(line, 4098, file) && (i < row))
+    printf("Student attendance record maintainence System\n\n");
+    printf("Number of student records you want to enter? : ");
+    scanf("%d", &n);
+    accept(data, n);
+    do
     {
-    	// double row[ssParams->nreal + 1];
-        char* tmp = strdup(line);
 
-	    int j = 0;
-	    const char* tok;
-	    for (tok = strtok(line, "\t"); tok && *tok; j++, tok = strtok(NULL, "\t\n"))
-	    {
-	        data[i][j] = atof(tok);
-	        printf("%f\t", data[i][j]);
-	    }
-	    printf("\n");
-
-        free(tmp);
-        i++;
+        printf("\nStudent attendance record maintainence System menu :\n");
+        printf("Press 1 to Display all records.\n");
+        printf("Press 2 to Search a specific student.\n");
+        printf("Press 0 to exit\n");
+        printf("\nEnter choice(0-2) : ");
+        scanf("%d", &choice);
+        switch (choice)
+        {
+            case 1:
+                display(data, n);
+                break;
+            case 2:
+                printf("Enter Roll number to search : ");
+                scanf("%d", &roll_no);
+                index = search(data, n, roll_no);
+                if (index ==  - 1)
+                {
+                    printf("Record not found : ");
+                }
+                else
+                {
+                    printf("Roll Number: %d\nName: %s\nAttendance: %d\n",
+                        data[index].roll_no, data[index].name,
+                        data[index].attendance);
+                }
+                break;
+        }
     }
+    while (choice != 0);
+
+    return 0;
 }
 
-int main(int argc, char const *argv[])
+void accept(struct student list[80], int s)
 {
-	/* code */
-	if (argc < 3){
-		printf("Please specify the CSV file as an input.\n");
-		exit(0);
-	}
+    int i;
+    for (i = 0; i < s; i++)
+    {
+        printf("\nEnter data for Record #%d", i + 1);
 
-	int row     = atoi(argv[1]);
-	int col     = atoi(argv[2]);
-	char fname[256];	strcpy(fname, argv[3]);
+        printf("\nEnter roll_no : ");
+        scanf("%d", &list[i].roll_no);
+        fflush(stdin);
+        printf("Enter name : ");
+        gets(list[i].name);
+        list[i].attendance = 0;
+    } 
+}
 
-	double **data;
-	data = (double **)malloc(row * sizeof(double *));
-	for (int i = 0; i < row; ++i){
-		data[i] = (double *)malloc(col * sizeof(double));
-	}
+void display(struct student list[80], int s)
+{
+    int i;
 
-	read_csv(row, col, fname, data);
+    printf("\n\nRoll Number\tName\tAttendance\n");
+    for (i = 0; i < s; i++)
+    {
+        printf("%d\t%s\t%d\n", list[i].roll_no, list[i].name,
+            list[i].attendance);
+    } 
+}
 
-	return 0;
+int search(struct student list[80], int s, int number)
+{
+    int i;
+
+    for (i = 0; i < s; i++)
+    {
+        if (list[i].roll_no == number)
+        {
+            return i;
+        } 
+    }
+    return  - 1;
 }
