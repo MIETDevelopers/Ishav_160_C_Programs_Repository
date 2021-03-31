@@ -1,32 +1,37 @@
-// A C Program to search an element in the array based on user choice.        © Ishav Verma 19/March/2021
+// A C Program representing Binary Search.                  © Ishav Verma 31/March/2021
 #include <stdio.h>
-void main(){  //In this program we are not using 'return 0', So 'int main() -> void main()'.
-    int num;
-    int i,  keynum, found = 0;
- 
-    printf("Enter the number of elements: \n");
-    scanf("%d", &num);//This will set the maximum number (Limit) of values to be entered by user based on their choice.
-    int array[num];
-    printf("Enter the elements one by one: \n");
-    for (i = 0; i < num; i++)
-    {
-        scanf("%d", &array[i]); //This will scan the user input.
+int main(){
+  int c, first, last, middle, n, search, array[100];
+
+  printf("Enter number of elements\n");
+  scanf("%d", &n);
+
+  printf("Enter %d integers\n", n);
+
+  for (c = 0; c < n; c++)
+    scanf("%d", &array[c]);
+
+  printf("Enter value to find\n");
+  scanf("%d", &search);
+
+  first = 0;
+  last = n - 1;
+  middle = (first+last)/2;
+
+  while (first <= last) {
+    if (array[middle] < search)
+      first = middle + 1;
+    else if (array[middle] == search) {
+      printf("%d found at location %d.\n", search, middle+1);
+      break;
     }
- 
-    printf("Enter the element to be searched: ");
-    scanf("%d", &keynum);
-    // This step will determine Linear search.
-    for (i = 0; i < num ; i++)
-    {
-        if (keynum == array[i] )
-        {
-            found = 1;
-            break;
-        }
-    }
-    //This will give the output based on user input.
-    if (found == 1) 
-        printf("Element is present in the array at position %d .",i+1);
     else
-        printf("Element is not present in the array.\n");
+      last = middle - 1;
+
+    middle = (first + last)/2;
+  }
+  if (first > last)
+    printf("Not found! %d isn't present in the list.\n", search);
+
+  return 0;
 }
