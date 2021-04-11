@@ -1,25 +1,21 @@
-// A C Program to read and print elements in two dimensional array. © Ishav Verma 19/March/2021
-#include<stdio.h>
-int main(){
-   /* 2D array declaration*/
-   int disp[3][4];
-   /*Counter variables for the loop*/
-   int i, j;
-   for(i=0; i<3; i++) {
-      for(j=0;j<4;j++) {
-         printf("Enter value for disp[%d][%d]:", i, j);
-         scanf("%d", &disp[i][j]);
-      }
-   }
-   //Displaying array elements
-   printf("Two Dimensional array elements:\n");
-   for(i=0; i<3; i++) {
-      for(j=0;j<4;j++) {
-         printf("%d \n", disp[i][j]);
-         if(j==4){
-            printf("\n");
-         }
-      }
-   }
-   return 0;
-} 
+// A C Program demonstrates an array with 10 integer elements initialization and printing their value.   © Ishav Verma
+#include <stdio.h>   //Preprocessor directive to include standard input output header file
+//Start of the main body function
+int main() {
+
+    int numbers[10]; //declaration of an array.
+
+    //for loop to insert values to the array.
+    for(int i=0;i<10;i++) {
+        printf("Enter element no. %d: ",i+1);
+        scanf("%d",&numbers[i]);
+    }
+
+    //for loop to print the entire array.
+    for(int i=0;i<10;i++) {
+        printf("\nElement no. %d is: %d",i+1,numbers[i]);
+    }
+
+   return 0;   //return statement
+}
+//End of the main body function
